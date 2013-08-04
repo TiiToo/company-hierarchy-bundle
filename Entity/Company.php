@@ -38,7 +38,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="phoneNumber", type="string", length=20, nullable=false)
+     * @ORM\Column(name="phone_number", type="string", length=20, nullable=false)
      */
     private $phoneNumber;
 
@@ -52,7 +52,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="vatNumber", type="string", length=20, nullable=true)
+     * @ORM\Column(name="vat_number", type="string", length=20, nullable=true)
      */
     private $vatNumber;
 
@@ -62,6 +62,26 @@ class Company
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Skonsoft\CompanyHierarchyBundle\Entity\Entity", mappedBy="company", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $entities;
+
+    /**
+     * @var \Skonsoft\PostalAddressBundle\Entity\Address
+     *
+     * @ORM\OneToOne(targetEntity="Skonsoft\PostalAddressBundle\Entity\Address")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", nullable=true)
+     */
+    private $address;
+
+    public function __construct()
+    {
+        $this->entities = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -216,4 +236,75 @@ class Company
     {
         return $this->email;
     }
+
+    /**
+     * Set entities
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection\ArrayCollection $entities
+     *
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
+     */
+    public function setEntities(ArrayCollection $entities)
+    {
+        $this->entities = $entities;
+
+        return $this;
+    }
+
+    /**
+     * Get entities
+     *
+     * @return ArrayCollection
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
+
+    /**
+     * @param \Skonsoft\CompanyHierarchyBundle\Entity\Entity $entity
+     *
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
+     */
+    public function addEntity(Entity $entity)
+    {
+        $entity->setCompany($this);
+        $this->entities->add($entity);
+
+        return $this;
+    }
+
+    /**
+     * @param \Skonsoft\CompanyHierarchyBundle\Entity\Entity $entity
+     *
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
+     */
+    public function removeState(State $entity)
+    {
+        $this->entities->removeElement($entity);
+        unset($entity);
+
+        return $this;
+    }
+
+    /**
+     * @return \Skonsoft\PostalAddressBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param \Skonsoft\PostalAddressBundle\Entity\Address $address
+     *
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
+     */
+    public function setAddress(\Skonsoft\PostalAddressBundle\Entity\Address $address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
 }
