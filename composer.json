@@ -1,0 +1,22 @@
+{
+    "name": "skonsoft/company-hierarchy-bundle",
+    "type": "symfony-bundle",
+    "description": "Company hierarchy management bundle for Symfony2",
+    "keywords": ["company", "hierarchy", "skonsoft"],
+    "homepage": "https://github.com/skonsoft/company-hierarchy-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Skander MABROUK",
+            "email": "mabroukskander@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle" : ">=2.1,<2.4"
+    },
+    "autoload": {
+        "psr-0": {"Skonsoft\\CompanyHierarchyBundle": ""}
+    },
+    "target-dir": "Skonsoft/CompanyHierarchyBundle"
+}
