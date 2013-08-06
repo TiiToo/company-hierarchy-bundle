@@ -1,6 +1,8 @@
 <?php
 namespace Skonsoft\CompanyHierarchyBundle\Model;
 
+use Skonsoft\CompanyHierarchyBundle\Entity\Company;
+
 /**
  * BusinessServiceProviderInterface
  *
@@ -11,7 +13,14 @@ namespace Skonsoft\CompanyHierarchyBundle\Model;
 interface BusinessServiceProviderInterface
 {
     /**
-     * @return string
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
      */
-    public function getName();
+    public function getCompany();
+
+    /**
+     * @param \Skonsoft\CompanyHierarchyBundle\Entity\Company $company
+     *
+     * @return BusinessServiceProviderInterface
+     */
+    public function setCompany(Company $company);
 }
