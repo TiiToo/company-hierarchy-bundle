@@ -3,6 +3,7 @@ namespace Skonsoft\CompanyHierarchyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
     Doctrine\Common\Collections\ArrayCollection;
+use Skonsoft\CompanyHierarchyBundle\Model\BusinessServiceProviderInterface;
 
 /**
  * Company
@@ -78,9 +79,17 @@ class Company
      */
     private $address;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Skonsoft\CompanyHierarchyBundle\Model\BusinessServiceProviderInterface", mappedBy="company", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $businessServiceProviders;
+
     public function __construct()
     {
         $this->entities = new ArrayCollection();
+        $this->businessServiceProviders = new ArrayCollection();
     }
 
     /**
@@ -303,6 +312,52 @@ class Company
     public function setAddress(\Skonsoft\PostalAddressBundle\Entity\Address $address)
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getBusinessServiceProviders()
+    {
+        return $this->businessServiceProviders;
+    }
+
+    /**
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $businessServiceProviders
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
+     */
+    public function setBusinessServiceProviders(ArrayCollection $businessServiceProviders)
+    {
+        $this->businessServiceProviders = $businessServiceProviders;
+
+        return $this;
+    }
+
+    /**
+     * @param Skonsoft\CompanyHierarchyBundle\Model\BusinessServiceProviderInterface $businessServiceProvider
+     *
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
+     */
+    public function addBusinessServiceProvider(BusinessServiceProviderInterface $businessServiceProvider)
+    {
+        $businessServiceProvider->setCompany($this);
+        $this->businessServiceProviders->add($businessServiceProvider);
+
+        return $this;
+    }
+
+    /**
+     * @param Skonsoft\CompanyHierarchyBundle\Model\BusinessServiceProviderInterface $businessServiceProvider
+     *
+     * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
+     */
+    public function removeBusinessServiceProvider(BusinessServiceProviderInterface $businessServiceProvider)
+    {
+        $this->businessServiceProviders->removeElement($businessServiceProvider);
+        unset($businessServiceProvider);
 
         return $this;
     }
