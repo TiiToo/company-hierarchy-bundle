@@ -249,7 +249,7 @@ class Company
     /**
      * Set entities
      *
-     * @param \Doctrine\Common\Collections\ArrayCollection\ArrayCollection $entities
+     * @param \Doctrine\Common\Collections\ArrayCollection $entities
      *
      * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
      */
@@ -288,7 +288,7 @@ class Company
      *
      * @return \Skonsoft\CompanyHierarchyBundle\Entity\Company
      */
-    public function removeState(State $entity)
+    public function removeEntity(Entity $entity)
     {
         $this->entities->removeElement($entity);
         unset($entity);
