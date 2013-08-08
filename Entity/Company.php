@@ -39,7 +39,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_number", type="string", length=20, nullable=false)
+     * @ORM\Column(name="phone_number", type="string", length=30, nullable=false)
      */
     private $phoneNumber;
 
@@ -53,7 +53,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="vat_number", type="string", length=20, nullable=true)
+     * @ORM\Column(name="vat_number", type="string", length=255, nullable=true)
      */
     private $vatNumber;
 
