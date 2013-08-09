@@ -1,4 +1,4 @@
-company-hierarchy-bundle
+company-hierarchy-bundle [![knpbundles.com](http://knpbundles.com/skonsoft/company-hierarchy-bundle/badge-short)](http://knpbundles.com/skonsoft/company-hierarchy-bundle)
 ========================
 
 Company hierarchy management bundle for Symfony2
