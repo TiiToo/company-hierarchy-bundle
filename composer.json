@@ -13,7 +13,7 @@
     ],
     "require": {
         
-        "skonsoft/postal-address-bundle": "dev-master"
+        "skonsoft/postal-address-bundle": "1.0"
     },
     "autoload": {
         "psr-0": {"Skonsoft\\CompanyHierarchyBundle": ""}
